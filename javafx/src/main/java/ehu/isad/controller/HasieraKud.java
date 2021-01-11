@@ -79,12 +79,7 @@ public class HasieraKud implements Initializable {
             txertatu();
         }
         else if(btn.equals(btnGorde)){
-
-            for (int i = 0; i < tbvTaula.getItems().size(); i++) {
-                if (!tvContent.getCellObservableValue(i).getValue().equals(null)) {
-                    DBHasiera.getInstance().datuBaseaAktualizatu(tvContent.getCellObservableValue(i).getValue(),tvID.getCellObservableValue(i).getValue());
-                }
-            }
+            gorde();
         }
 
     }
@@ -100,7 +95,11 @@ public class HasieraKud implements Initializable {
     }
 
     private void gorde(){
-
+        for (int i = 0; i < tbvTaula.getItems().size(); i++) {
+            if (!tvContent.getCellObservableValue(i).getValue().equals(0)) {
+                DBHasiera.getInstance().datuBaseaAktualizatu(tvContent.getCellObservableValue(i).getValue(),tvID.getCellObservableValue(i).getValue());
+            }
+        }
     }
 
     //IRUDIAK KARGATU
@@ -169,6 +168,7 @@ public class HasieraKud implements Initializable {
 
         //add your data to the table here.
         tbvTaula.setItems(taula);
+        tbvTaula.setEditable(true);
 
 
         tvID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -176,6 +176,7 @@ public class HasieraKud implements Initializable {
         tvContent.setCellValueFactory(new PropertyValueFactory<>("content"));
         tvDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         tvIrudia.setCellValueFactory(new PropertyValueFactory<>("irudia"));
+        tvContent.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         irudiaKargatu();
         contentEditatu();
@@ -211,9 +212,8 @@ public class HasieraKud implements Initializable {
             TableCell<CaptchaTaula, Integer> cell = defaultTextFieldCellFactory.call(col);
 
             cell.setOnMouseClicked(event -> {
-                if (! cell.isEmpty()) {
-                        cell.setEditable(true);
-                }
+                if(cell.isEmpty())
+                    cell.setEditable(true);
             });
 
             return cell ;

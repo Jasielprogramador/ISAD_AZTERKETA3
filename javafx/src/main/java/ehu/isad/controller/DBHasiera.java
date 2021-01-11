@@ -2,8 +2,15 @@ package ehu.isad.controller;
 
 
 import ehu.isad.model.CaptchaTaula;
+import javafx.embed.swing.SwingFXUtils;
+
+
 import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,10 +47,6 @@ public class DBHasiera {
         return emaitza;
     }
 
-    private Image irudiaLortu(String path) {
-        return new Image("/"+path);
-    }
-
     public Integer azkenIdLortu(){
         String query = "select * from captchas";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
@@ -66,9 +69,13 @@ public class DBHasiera {
     }
 
     public void datuBaseaAktualizatu(Integer content, Integer id){
-        String query = "update captchas set content =" +content+" where id = "+id;
+        String query = "update captchas set value =" +content+" where id = "+id;
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
+    }
+
+    private Image irudiaLortu(String path) {
+        return new Image(path);
     }
 
 

@@ -89,8 +89,12 @@ public class HasieraKud implements Initializable {
             }
             else{
                 Model model = new Model(txtTestua.getText(),line,"");
+                taulaBeteEz(line,model);
+                for(int i=0;i<tbvTaula.getItems().size();i++){
+                    if(tvMd5)
+                    tvVersion.getCellObservableValue(i).getValue()
+                }
                 DBHasiera.getInstance().datuBaseanTxertatu(model);
-                taulaBeteEz(line);
                 lblWarning.setText("md5 eta bertsio berria datubasean sartu egin dira");
             }
         }
@@ -119,12 +123,11 @@ public class HasieraKud implements Initializable {
 
     }
 
-    public void taulaBeteEz(String line){
-        List<Model> emaitza = DBHasiera.getInstance().jadaDatuBasean(line,txtTestua.getText());
-        ObservableList<Model> taula = FXCollections.observableArrayList(emaitza);
+    public void taulaBeteEz(String line,Model model){
 
-        tbvTaula.setItems(taula);
-        tbvTaula.setEditable(true);
+        List<Model> emaitza = DBHasiera.getInstance().jadaDatuBasean(line,txtTestua.getText());
+        emaitza.add(model);
+        ObservableList<Model> taula = FXCollections.observableArrayList(emaitza);
 
         if(tbvTaula.getItems().size()==0){
 
@@ -140,7 +143,6 @@ public class HasieraKud implements Initializable {
             tvMd5.setCellValueFactory(new PropertyValueFactory<>("md5"));
             tvVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
         }
-
         versionEditatu();
         versionCommit();
 

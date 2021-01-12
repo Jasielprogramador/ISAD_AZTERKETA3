@@ -90,11 +90,14 @@ public class HasieraKud implements Initializable {
             else{
                 Model model = new Model(txtTestua.getText(),line,"");
                 taulaBeteEz(line,model);
+                Model m = null;
                 for(int i=0;i<tbvTaula.getItems().size();i++){
-                    if(tvMd5)
-                    tvVersion.getCellObservableValue(i).getValue()
+                    if(tvMd5.getCellObservableValue(i).getValue().equals(model.getMd5())) {
+                        m = new Model(model.getUrl(), model.getMd5(),
+                                tvVersion.getCellObservableValue(i).getValue());
+                    }
                 }
-                DBHasiera.getInstance().datuBaseanTxertatu(model);
+                DBHasiera.getInstance().datuBaseanTxertatu(m);
                 lblWarning.setText("md5 eta bertsio berria datubasean sartu egin dira");
             }
         }

@@ -53,6 +53,9 @@ run {
         //sqlite
         compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.28.0'
 
+        compile 'commons-codec:commons-codec:1.15'
+
+
         implementation 'com.google.guava:guava:29.0-jre'
     }
 }

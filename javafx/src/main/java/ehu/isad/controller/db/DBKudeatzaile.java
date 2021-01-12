@@ -1,11 +1,8 @@
-package ehu.isad.controller;
+package ehu.isad.controller.db;
 
 
 import ehu.isad.utils.Utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;

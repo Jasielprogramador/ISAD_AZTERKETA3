@@ -1,8 +1,8 @@
 package ehu.isad;
 
 
-import ehu.isad.controller.HasieraKud;
-import ehu.isad.model.CaptchaTaula;
+import ehu.isad.controller.ui.HasieraKud;
+import ehu.isad.model.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private CaptchaTaula captchaTaula =null;
+    private Model model =null;
 
     private Stage stageHasiera;
     private Scene sceneHasiera;

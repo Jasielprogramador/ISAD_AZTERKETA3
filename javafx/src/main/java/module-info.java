@@ -5,5 +5,6 @@ open module gradlejavafx {
   requires javafx.swing;
   requires javafx.web;
     requires com.google.gson;
+    requires org.apache.commons.codec;
     exports ehu.isad;
 }
